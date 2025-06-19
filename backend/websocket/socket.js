@@ -1,15 +1,9 @@
-function setupWebSocket(io) {
-    io.on('connection', (socket) => {
-      console.log('[WebSocket] Client connected');
-  
-      socket.on('disconnect', () => {
-        console.log('[WebSocket] Client disconnected');
-      });
+// backend/websocket/socket.js
+module.exports = (io) => {
+  io.on('connection', (socket) => {
+    console.log('Client connected');
+    socket.on('disconnect', () => {
+      console.log('Client disconnected');
     });
-  
-    global.emitUpdate = (channel, data) => {
-      io.emit(channel, data);
-    };
-  }
-  
-  module.exports = { setupWebSocket };
+  });
+};

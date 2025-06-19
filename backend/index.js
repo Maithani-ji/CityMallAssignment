@@ -1,27 +1,26 @@
+// backend/index.js
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
 const http = require('http');
+const cors = require('cors');
 const { Server } = require('socket.io');
-
-const disasterRoutes = require('./routes/disaster.routes');
-const { setupWebSocket } = require('./websocket/socket');
+const routes = require('./routes');
+const initWebSocket = require('./websocket/socket');
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, { cors: { origin: "*" } });
+const io = new Server(server, {
+  cors: { origin: '*' },
+});
 
-setupWebSocket(io);
+global.emitUpdate = (event, data) => io.emit(event, data);
 
 app.use(cors());
 app.use(express.json());
-app.use('/api/disasters', disasterRoutes);
+app.use(express.static('public'));
+app.use('/api', routes); // All backend routes
 
-app.get('/', (req, res) => {
-  res.send('Disaster Response Platform API running');
-});
+initWebSocket(io); // WebSocket setup
 
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

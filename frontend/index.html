@@ -1,12 +1,59 @@
 <!DOCTYPE html>
-<html>
-  <head><title>Disaster Dashboard</title></head>
-  <body>
-    <h1>Disaster Response</h1>
-    <script>
-      fetch('http://localhost:3000')
-        .then(r => r.text())
-        .then(console.log);
-    </script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Disaster Response Platform</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script defer src="script.js"></script>
+
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f8f9fa; }
+    h2 { margin-top: 30px; }
+    input, textarea, select, button {
+      display: block;
+      margin: 10px 0;
+      padding: 8px;
+      width: 100%;
+      max-width: 500px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌍 Disaster Response Dashboard</h1>
+
+  <h2>Create Disaster</h2>
+  <form id="disasterForm">
+    <input type="text" placeholder="Title" id="title" required />
+    <input type="text" placeholder="Location Name" id="location_name" required />
+    <textarea placeholder="Description" id="description" required></textarea>
+    <input type="text" placeholder="Tags (comma-separated)" id="tags" />
+    <input type="text" placeholder="Owner ID" id="owner_id" value="netrunnerX" required />
+    <button type="submit">Create Disaster</button>
+  </form>
+
+  <h2>Submit Report</h2>
+  <form id="reportForm">
+    <input type="text" placeholder="Disaster ID" id="report_disaster_id" required />
+    <input type="text" placeholder="User ID" id="user_id" value="citizen1" required />
+    <textarea placeholder="Content" id="content" required></textarea>
+    <input type="text" placeholder="Image URL (optional)" id="image_url" />
+    <button type="submit">Submit Report</button>
+  </form>
+
+  <h2>Test Geocode</h2>
+  <form id="geocodeForm">
+    <textarea placeholder="Enter a disaster description" id="geo_description"></textarea>
+    <button type="submit">Extract Location</button>
+  </form>
+
+  <h2>All Disasters</h2>
+  <div id="disastersList"></div>
+</body>
 </html>
