@@ -197,4 +197,3 @@ npm-debug.log
 
 ## 🚀 Done ✅
 
-You're ready to demo or deploy your **Disaster Response Coordination Platform**! 🧭
