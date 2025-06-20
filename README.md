@@ -1,35 +1,63 @@
-# 🌍 Disaster Response Coordination Platform
+# 🌐 Disaster Response Coordination Platform
 
-This is a full-stack MERN-style platform (with Supabase + Node.js backend) to report, track, and respond to disasters in real-time.
-
-## 🚀 Features
-
-- 🆕 Create disasters with location + tags
-- 🧭 Geocode locations from text descriptions
-- 📸 Submit reports with image verification (via Gemini API)
-- 🧵 Fetch social and official updates (mocked)
-- 🛰️ Real-time updates using Socket.IO
-- ⚡ Redis-based caching for geocode/image data
-- 🗺️ Nearby resource queries via lat/lon
-- 🔐 Powered by Supabase (PostgreSQL + PostGIS)
+> A full-stack platform for real-time disaster tracking, report verification, and coordination, using Node.js, Supabase, and Google Gemini Vision API.
 
 ---
 
-## 🧑‍💻 Tech Stack
+## 🧩 Project Overview
 
-- **Backend**: Node.js, Express, Supabase (PostgreSQL + PostGIS), Redis
-- **Frontend**: Vanilla JS + HTML (minimal UI)
-- **Real-Time**: Socket.IO
-- **AI**: Google Gemini Vision API
-- **Caching**: Redis
-- **Geocoding**: Gemini text-to-location (mocked in controller)
+This app allows:
+- ✅ **Creating disasters** by location, geocoded to coordinates
+- 📍 **Geocoding** user-entered locations
+- 📝 **Submitting image reports** (with AI-based verification)
+- 📡 **Real-time updates** via Socket.IO
+- 📦 **Fetching social + official updates**
+- 🚑 **Nearby resource data** (lat/lon based)
+
 
 ---
 
-## 📦 Setup Instructions
+## 🧰 Tech Stack
 
-### 1. Clone the Repo
+| Layer       | Stack                                        |
+|------------|-----------------------------------------------|
+| Backend     | Node.js, Express, Supabase (Postgres + PostGIS) |
+| Frontend    | HTML + Vanilla JS                            |
+| Real-Time   | Socket.IO                                    |
+| AI Verifier | Google Gemini Pro Vision                     |
+| Geocoding   | Gemini-based text analysis (mockable)        |
 
-```bash
+---
+
+## 🔐 Environment Variables (`backend/.env`)
+
+```env
+PORT=3000
+SUPABASE_URL=https://<your-project>.supabase.co
+SUPABASE_KEY=<your-service-role-key>
+GEMINI_API_KEY=<your-gemini-key>
+REDIS_URL=redis://localhost:6379
+
+1. Clone the Repo
+
+
 git clone https://github.com/your-username/disaster-response-platform
 cd disaster-response-platform
+
+2. Install Backend Dependencies
+
+cd backend
+npm install
+
+Start the Backend
+
+cd backend
+node index.js
+
+✅ Your backend runs at: http://localhost:3000
+
+🖥️ Frontend (Static)
+No build step — just open the file.
+
+
+open frontend/index.html
