@@ -1,5 +1,6 @@
 
-const socket = io('http://localhost:3000'); // or your deployed URL
+const socket = io('https://citymallassignment.onrender.com');
+
 
 socket.on('connect', () => {
   console.log('✅ Socket.IO connected');
@@ -18,7 +19,8 @@ socket.on('disaster_updated', (data) => {
 socket.on('report_verified', (data) => {
   console.log('📷 Report verified update:', data);
 });
-const API_BASE = 'http://localhost:3000/api';
+const API_BASE = 'https://citymallassignment.onrender.com/api';
+
 document.getElementById('disasterForm').onsubmit = async (e) => {
     e.preventDefault();
   
@@ -235,7 +237,7 @@ async function getUpdates(id) {
 
 // (Optional) Real-time updates
 try {
-  const socket = io('http://localhost:3000');
+  
   socket.on('report_verified', (data) => {
     alert(`✅ Real-time: Image Verified (${data.verification_status})`);
   });
