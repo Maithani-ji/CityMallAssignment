@@ -34,7 +34,6 @@ This app allows:
 Ensure you have:
 
 * [Node.js](https://nodejs.org/) (v16+)
-* [Redis](https://redis.io/)
 * A modern browser
 * [Git](https://git-scm.com/)
 
@@ -65,14 +64,9 @@ PORT=3000
 SUPABASE_URL=https://<your-project>.supabase.co
 SUPABASE_KEY=<your-service-role-key>
 GEMINI_API_KEY=<your-gemini-api-key>
-REDIS_URL=redis://localhost:6379
+
 ```
 
-### 4. Start Redis
-
-```bash
-redis-server
-```
 
 ### 5. Run the Backend Server
 
