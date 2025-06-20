@@ -1,19 +1,24 @@
 # 🌐 Disaster Response Coordination Platform
 
-> A full-stack platform for real-time disaster tracking, report verification, and coordination, using Node.js, Supabase, and Google Gemini Vision API.
+> A full-stack platform for real-time disaster tracking, image verification, and coordination — built using **Node.js**, **Supabase**, and **Google Gemini Vision API**.
 
 ---
 
-## 🧩 Project Overview
+## 🔗 Live Demo
 
-This app allows:
+- **Frontend (Vercel)**: [https://city-mall-assignment.vercel.app](https://city-mall-assignment.vercel.app)  
+- **Backend (Render)**: [https://citymallassignment.onrender.com](https://citymallassignment.onrender.com)
 
-* ✅ **Creating disasters** by location, geocoded to coordinates
-* 📍 **Geocoding** user-entered locations
-* 📝 **Submitting image reports** (with AI-based verification)
-* 📡 **Real-time updates** via Socket.IO
-* 📦 **Fetching social + official updates**
-* 🚑 **Nearby resource data** (lat/lon based)
+---
+
+## 🧩 Features
+
+- ✅ **Create disasters** with geocoded locations  
+- 🧠 **AI-based image verification** (Google Gemini Vision API)  
+- 📡 **Real-time updates** via Socket.IO  
+- 📝 **Submit and view disaster reports**  
+- 🧭 **Fetch nearby resources** based on latitude/longitude  
+- 📢 **Social and official updates** pulled dynamically  
 
 ---
 
@@ -21,25 +26,25 @@ This app allows:
 
 | Layer       | Stack                                           |
 | ----------- | ----------------------------------------------- |
-| Backend     | Node.js, Express, Supabase (Postgres + PostGIS) |
-| Frontend    | HTML + Vanilla JS                               |
-| Real-Time   | Socket.IO                                       |
-| AI Verifier | Google Gemini Pro Vision                        |
-| Geocoding   | Gemini-based text analysis (mockable)           |
+| **Backend** | Node.js, Express, Supabase (Postgres + PostGIS) |
+| **Frontend**| HTML, Vanilla JS                                |
+| **Real-Time** | Socket.IO                                     |
+| **AI Vision**| Google Gemini Pro Vision                       |
+| **Geocoding**| Gemini-based text analysis (mocked/mocked)     |
 
 ---
 
 ## ⚙️ Prerequisites
 
-Ensure you have:
+Ensure you have installed:
 
-* [Node.js](https://nodejs.org/) (v16+)
-* A modern browser
-* [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/) (v16+)
+- [Git](https://git-scm.com/)
+- A modern browser
 
 ---
 
-## 🛠️ Local Setup Guide
+## 🛠️ Local Development Setup
 
 ### 1. Clone the Repository
 
@@ -48,73 +53,69 @@ git clone https://github.com/your-username/disaster-response-platform
 cd disaster-response-platform
 ```
 
-### 2. Backend Setup
+### 2. Setup Backend
 
 ```bash
 cd backend
 npm install
 ```
 
-### 3. Configure Environment Variables
+### 3. Environment Configuration
 
-Create a `.env` file inside `backend/`:
+Create a `.env` file in the `backend/` directory:
 
 ```env
 PORT=3000
 SUPABASE_URL=https://<your-project>.supabase.co
 SUPABASE_KEY=<your-service-role-key>
 GEMINI_API_KEY=<your-gemini-api-key>
-
 ```
 
-
-### 5. Run the Backend Server
+### 4. Run the Server
 
 ```bash
 npm start
 ```
 
-Visit: [http://localhost:3000](http://localhost:3000)
+Backend will run at [http://localhost:3000](http://localhost:3000)
 
 ---
 
 ## 🖥️ Frontend Setup
 
-Static frontend — no build required.
+No build needed — static HTML + JS.
 
-### Open `frontend/index.html`
+### Option A: Open locally
 
 ```bash
 open frontend/index.html
 ```
 
-Or visit via backend:
+### Option B: Serve via backend
 
-```url
-http://localhost:3000
-```
+Visit [http://localhost:3000](http://localhost:3000) — static files are auto-served.
 
 ---
 
-## 🧪 Sample API Calls
+## 🧪 Sample API Usage
 
-### Geocode
+### ➤ Geocode Location
 
-```bash
+```http
 POST /api/geocode
 {
   "description": "Andheri West, Mumbai"
 }
 ```
 
-### Create Disaster
+### ➤ Create Disaster
 
-```bash
+```http
 POST /api/disasters
 {
   "title": "Flood",
   "location_name": "Andheri West, Mumbai",
-  "description": "Severe flooding",
+  "description": "Heavy waterlogging",
   "tags": ["flood", "urgent"],
   "location": {
     "lat": 19.1197,
@@ -123,9 +124,9 @@ POST /api/disasters
 }
 ```
 
-### Submit Report
+### ➤ Submit Report
 
-```bash
+```http
 POST /api/disasters/:id/reports
 {
   "user_id": "user123",
@@ -136,33 +137,33 @@ POST /api/disasters/:id/reports
 
 ---
 
-## 📡 Real-Time Features
+## 📡 Real-Time Events
 
-Socket.IO events:
-
-| Event              | Description                     |
-| ------------------ | ------------------------------- |
-| `disaster_updated` | On disaster creation            |
-| `report_verified`  | After Gemini validates an image |
+| Event              | Trigger                             |
+| ------------------ | ----------------------------------- |
+| `disaster_updated` | New disaster created                |
+| `report_verified`  | After image verification by Gemini  |
 
 ---
 
-## ✅ Deployment Notes
+## 🚀 Deployment Notes
 
-* This project does **not** use Supabase CLI — schema lives in Supabase dashboard.
-* Redis is **optional** but improves caching performance.
-* Static frontend supports direct testing of all APIs.
+- ✅ Deployed backend on **Render**
+- ✅ Deployed frontend on **Vercel**
+- ✅ CORS handled to allow frontend ↔ backend communication
+- 🧠 Gemini Vision API usage is mocked when needed
+- Redis is optional and used for caching in production
 
 ---
 
-## 📁 Folder Structure
+## 📁 Project Structure
 
 ```
 backend/
 ├── controllers/
 ├── routes/
-├── utils/
 ├── websocket/
+├── utils/
 ├── supabaseClient.js
 ├── index.js
 
@@ -176,7 +177,7 @@ README.md
 
 ---
 
-## 📦 .gitignore Sample
+## 🧼 .gitignore
 
 ```gitignore
 node_modules/
@@ -189,11 +190,15 @@ npm-debug.log
 
 ## 🧠 Credits
 
-* Supabase for database + PostGIS
-* Google Gemini API for vision analysis
-* OpenAI for assistance in code and setup
+- Supabase for Postgres + PostGIS
+- Google Gemini API for AI-based image analysis
+- Render + Vercel for deployment
+- OpenAI for development support
 
 ---
 
-## 🚀 Done ✅
+## ✅ Status: Production Ready
 
+Everything is live and fully functional. Try submitting a report or viewing live disasters at:
+
+👉 [https://city-mall-assignment.vercel.app](https://city-mall-assignment.vercel.app)
