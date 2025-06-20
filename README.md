@@ -71,7 +71,7 @@ GEMINI_API_KEY=<your-gemini-api-key>
 ### 5. Run the Backend Server
 
 ```bash
-node index.js
+npm start
 ```
 
 Visit: [http://localhost:3000](http://localhost:3000)
