@@ -9,13 +9,22 @@ const initWebSocket = require('./websocket/socket');
 
 const app = express();
 const server = http.createServer(app);
+// Setup Socket.IO server
 const io = new Server(server, {
-  cors: { origin: '*' },
+  cors: {
+    origin: 'https://city-mall-assignment.vercel.app',
+    methods: ['GET', 'POST']
+  }
 });
 
 global.emitUpdate = (event, data) => io.emit(event, data);
 
-app.use(cors());
+// Allow CORS from your frontend domain
+app.use(cors({
+  origin: 'https://city-mall-assignment.vercel.app',
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(express.static('public'));
 app.use('/api', routes); // All backend routes

@@ -1,5 +1,8 @@
 
-const socket = io('https://citymallassignment.onrender.com');
+const socket = io('https://citymallassignment.onrender.com', {
+  transports: ['websocket'], // Avoid polling issues
+  withCredentials: true
+});
 
 
 socket.on('connect', () => {
